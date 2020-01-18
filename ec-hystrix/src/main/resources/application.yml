@@ -1,0 +1,20 @@
+#服务消费者
+server:
+  port: 9395    #服务器端口
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/ #eureka 服务器地址
+
+  instance:
+    prefer-ip-address: true # IP 地址代替主机名注册
+    instance-id: ${eureka.instance.appname}:${spring.cloud.client.ip-address}:${server.port} # 微服务节点实例名称
+    appname: snow-leopard  #微服务名称
+
+
+#配置 actuator
+management:
+  endpoint:
+    health:
+      show-details: always #将端点细节展示给所有用户查看，默认为 never(不展示细节给所有用户)

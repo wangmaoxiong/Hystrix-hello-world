@@ -1,0 +1,14 @@
+#Eureka Server 注册中心
+server:
+  port: 8761
+eureka:
+  server:
+    enable-self-preservation: false #关闭自我保护机制
+    eviction-interval-timer-in-ms: 60000 #驱逐计时器扫描失效服务间隔时间。（单位毫秒，默认 60*1000）
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false   #禁用自己向自己注册
+    fetch-registry: false   #不同步其他的 Eureka Server节点的数据
+    service-url:  #Eureka Client 与 Eureka Server 交互的地址
+      default-zone: http://${eureka.instance.hostname}:${server.port}/eureka/
