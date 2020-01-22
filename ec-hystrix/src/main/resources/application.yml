@@ -18,3 +18,8 @@ management:
   endpoint:
     health:
       show-details: always #将端点细节展示给所有用户查看，默认为 never(不展示细节给所有用户)
+
+  endpoints:
+    web:
+      exposure:
+        include: health,info,hystrix.stream   #对外公开 health,info,hystrix.stream 三个端点
