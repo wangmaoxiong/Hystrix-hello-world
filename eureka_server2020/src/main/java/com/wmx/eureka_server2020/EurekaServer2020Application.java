@@ -7,7 +7,7 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
 
 /**
  * @EnableEurekaServer ：开启 eureka server ，否则 eureka 服务不会生效.
- * @EnableHystrixDashboard : 开启 Hystrix 仪表盘，否则 hystrix 仪表板不开启
+ * @EnableHystrixDashboard : 开启 Hystrix 仪表盘，否则 hystrix 仪表板不开启。可以单独作为一个服务启动，不用强制和 eureka-server 一起
  */
 @SpringBootApplication
 @EnableEurekaServer
