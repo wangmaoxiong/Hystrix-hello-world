@@ -3,6 +3,7 @@ package com.wmx.eureka_client2020.controller;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
@@ -30,11 +31,12 @@ public class PersonController {
 
     /**
      * 获取密钥
+     * http://localhost:9394/zebra/cipher/990
      *
      * @return
      */
-    @GetMapping("zebra/cipher")
-    public String cipher() {
+    @GetMapping("zebra/cipher/{code}")
+    public String cipher(@PathVariable String code) {
         JsonNodeFactory jsonNodeFactory = JsonNodeFactory.instance;
         ObjectNode objectNode = jsonNodeFactory.objectNode();
         objectNode.put("code", 200);

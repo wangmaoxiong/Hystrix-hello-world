@@ -3,15 +3,18 @@ package com.wmx.echystrix;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 /**
  * @EnableCircuitBreaker ：表示开启断路器模式，不写时只要导入了 hystrix 依赖默认也是开启的。可以不写。
  * @EnableEurekaClient ：只要导入了 eureka-client 依赖，则默认也是开启 eureka 客户端的。可以不写。
+ * @EnableFeignClients :开启 feign 功能，否则默认不开启
  */
 @SpringBootApplication
 @EnableCircuitBreaker
+@EnableFeignClients
 public class EcHystrixApplication {
 
     public static void main(String[] args) {
