@@ -5,7 +5,10 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 @RestController
+@SuppressWarnings("all")
 public class PersonController {
 
     /**
@@ -24,4 +27,20 @@ public class PersonController {
         objectNode.put("info", "斑马锦衣卫都指挥使");
         return objectNode.toString();
     }
+
+    /**
+     * 获取密钥
+     *
+     * @return
+     */
+    @GetMapping("zebra/cipher")
+    public String cipher() {
+        JsonNodeFactory jsonNodeFactory = JsonNodeFactory.instance;
+        ObjectNode objectNode = jsonNodeFactory.objectNode();
+        objectNode.put("code", 200);
+        objectNode.put("cipher", UUID.randomUUID().toString());
+        objectNode.put("timeStamp", System.currentTimeMillis());
+        return objectNode.toString();
+    }
+
 }
