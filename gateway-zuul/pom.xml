@@ -20,10 +20,12 @@
     </properties>
 
     <dependencies>
+        <!--网关作为一个单独的微服务客户端-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
+        <!--zuul依赖内部依赖了 spring-boot-starter-web,actuator,netflix-hystrix,netflix-ribbon,netflix-archaius组件-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-zuul</artifactId>

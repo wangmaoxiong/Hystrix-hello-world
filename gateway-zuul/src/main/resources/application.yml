@@ -2,9 +2,11 @@
 server:
   port: 7790    #服务器端口
 
+#spring.application.name：spring 应用名，未配置 eureka.instance.appname 时，spring 应用名默认为微服务名称
+#其它需要代理的微服务未配置 spring.application.name 时，网关 zuul 会找不到本服务报错如：Load balancer does not have available server for client: xxx
 spring:
   application:
-    name: gateway-server  #spring 应用名，未配置 eureka.instance.appname 时，spring 应用名默认未微服务名称
+    name: gateway-server
 
 eureka:
   client:
