@@ -1,0 +1,15 @@
+#服务提供者
+server:
+  port: 7790    #服务器端口
+
+spring:
+  application:
+    name: gateway-server  #spring 应用名，未配置 eureka.instance.appname 时，spring 应用名默认未微服务名称
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/ #eureka 服务器地址
+  instance:
+    prefer-ip-address: true # IP 地址代替主机名注册
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port} # 微服务节点实例名称
