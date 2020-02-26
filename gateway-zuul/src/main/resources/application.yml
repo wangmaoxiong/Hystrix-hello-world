@@ -17,12 +17,25 @@ eureka:
     instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port} # 微服务节点实例名称
 
 zuul:
-  #  ignored-services: ec-zebra #对微服务 ec-zebra 不进行网关代理，值是一个 set，多个时用逗号隔开，* 表示所有
-  #routes 配置路由规则，值是一个 Map，key 是代理的微服务名称，如 snow-leopard
+  #routes 配置路由规则，值是一个 Map，key 是代理的微服务名称，如 snow-leopard，值仍然还可以使用 map
   routes:
-    snow-leopard: /leopard-server/** #后缀 "/**" 表示匹配所有请求
-    #ec-zebra-toute 自定义名称，唯一即可，path 是映射路径，serviceId 是代理的服务名称
-    ec-zebra-toute:
-      path: /zebra-server/**
+    snow-leopard:         #自定义名称，整个 routes 下唯一即可
+      path: /leopardApp/**         #代理路径
+      #      serviceId: snow-leopard   #代理的微服务名称，当它有多个节点时，网关默认会使用 ribbon 进行负载均衡
+      strip-prefix: true        #是否剥离/去掉前缀，默认为 true，表示实际转发路径会去掉 path 中的前缀 leopard
+    ec-zebra:
+      path: /zebra/**
       serviceId: ec-zebra
+      strip-prefix: false     # false 表示不剥离 path 中的前缀 zebra,此时前缀会被当作真实的请求路径
+      sensitive-headers: Cookie,Set-Cookie  #过滤传入、传出的敏感头信息
+#  ignored-patterns: /**/code/**,/**/cipher/**  #忽略请求路径中含有 code、cipher 字符串的请求，它们会被拦截，不会再转发
 
+#配置 actuator
+management:
+  endpoint:
+    health:
+      show-details: always #将端点细节展示给所有用户查看，默认为 never(不展示细节给所有用户)
+  endpoints:
+    web:
+      exposure:
+        include: health,info,hystrix.stream,routes,filters   #对外公开的端点，默认只公开了 health,info
