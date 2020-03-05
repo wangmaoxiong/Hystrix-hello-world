@@ -26,7 +26,7 @@ zuul:
   routes:
     snow-leopard:         #自定义名称，整个 routes 下唯一即可
       path: /leopardApp/**         #代理路径
-      #      serviceId: snow-leopard   #代理的微服务名称，当它有多个节点时，网关默认会使用 ribbon 进行负载均衡
+      serviceId: snow-leopard   #代理的微服务名称，当它有多个节点时，网关默认会使用 ribbon 进行负载均衡
       strip-prefix: true        #是否剥离/去掉前缀，默认为 true，表示实际转发路径会去掉 path 中的前缀 leopard
     ec-zebra:
       path: /zebra/**
@@ -46,7 +46,7 @@ management:
         include: health,info,hystrix.stream,routes,filters   #对外公开的端点，默认只公开了 health,info
 
 #设置 hystrix 与 ribbon 超时时间
-hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 180000
 ribbon:
   ConnectTimeout: 3000
   ReadTimeout: 60000
