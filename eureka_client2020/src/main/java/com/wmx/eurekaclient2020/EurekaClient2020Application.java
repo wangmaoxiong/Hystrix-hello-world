@@ -1,10 +1,11 @@
-package com.wmx.eureka_client2020;
+package com.wmx.eurekaclient2020;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.client.RestTemplate;
 
+/**
+ * @author wangmaoxiong
+ */
 @SpringBootApplication
 public class EurekaClient2020Application {
 

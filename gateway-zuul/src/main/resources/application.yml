@@ -8,6 +8,11 @@ spring:
   application:
     name: gateway-server
 
+# 文件上传代理路径如果加了 zuul 前缀，网关中则可以不用设置文件上传大小,当然配置了也不影响
+#  servlet:
+#    multipart:
+#      max-file-size: 2048MB
+#      max-request-size: 2048MB
 eureka:
   client:
     service-url:
@@ -39,3 +44,10 @@ management:
     web:
       exposure:
         include: health,info,hystrix.stream,routes,filters   #对外公开的端点，默认只公开了 health,info
+
+#设置 hystrix 与 ribbon 超时时间
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+ribbon:
+  ConnectTimeout: 3000
+  ReadTimeout: 60000
+

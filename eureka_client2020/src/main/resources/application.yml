@@ -1,12 +1,17 @@
 #服务提供者
 server:
-  port: 9394    #服务器端口
+  port:  9394    #服务器端口
 
 #spring.application.name：spring 应用名，未配置 eureka.instance.appname 时，spring 应用名默认为微服务名称
 #spring.application.name未配置时，网关 zuul 会找不到本服务：Load balancer does not have available server for client: ec-zebra
 spring:
   application:
     name: ec-zebra
+
+  servlet:
+    multipart:
+      max-file-size: 2048MB     #设置单文件上传时，文件大小上限，单位可以是 MB、KB，默认为 1MB
+      max-request-size: 2048MB  #设置多文件上传时，文件总大小上限，单位可以是 MB、KB，默认为 10MB
 
 eureka:
   client:
@@ -16,4 +21,7 @@ eureka:
     prefer-ip-address: true # IP 地址代替主机名注册
     instance-id: ${eureka.instance.appname}:${spring.cloud.client.ip-address}:${server.port} # 微服务节点实例名称
     appname: ec-zebra  #微服务名称，可以省略，推荐写 spring.application.name，或者两者都写上.
+
+#自定义的文件上传存储目录
+fileSaveDir: C:/wmx/temp
 

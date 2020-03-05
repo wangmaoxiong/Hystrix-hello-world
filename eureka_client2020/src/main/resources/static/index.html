@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文件上传</title>
+</head>
+<body>
+
+<!-- 文件上传时method必须是post,enctype必须是multipart/form-data -->
+<form action="http://192.168.2.77:7790/zuul/zebra/resource/upload" method="post" enctype="multipart/form-data"
+      target="_blank">
+    <input type="file" name="uploadFile"/><br>
+    <input type="submit" value="上传">
+</form>
+
+<hr>
+
+</body>
+</html>
